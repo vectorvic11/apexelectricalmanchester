@@ -41,5 +41,5 @@ Local trade services in the UK lose significant emergency call-out revenue due t
 
 **Victor Osita**  
 *Web Performance & Google Search Visibility Specialist*  
-- Portfolio: [https://victorosita.vercel.app](https://victorosita.vercel.app)
+- Portfolio: [https://victorosita.vercel.app](https://my-portfolio-git-main-victoregbe2018-4707s-projects.vercel.app/)
 - LinkedIn: [/in/victor-osita-egbe](https://linkedin.com/in/victor-osita-egbe)
