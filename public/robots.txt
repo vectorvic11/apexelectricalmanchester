@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Directives for search engine and AI crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://apexelectricalmanchester.vercel.app/sitemap.xml
