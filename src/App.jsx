@@ -144,12 +144,12 @@ export default function App() {
   ]
 
   return (
-    <div className="bg-slate-950 text-white font-sans min-h-screen">
+    <div className="bg-slate-950 text-white font-sans min-h-screen selection:bg-amber-500 selection:text-slate-950">
       {/* SECTION 1: TOP ANNOUNCEMENT BAR */}
       <header>
         <div className="bg-gradient-to-r from-amber-600 to-amber-500 text-slate-950 py-2.5 px-4 text-center font-bold text-xs sm:text-sm md:text-base">
           ⚡ 24/7 Emergency Dispatch Across Greater Manchester | 45-Min Average Response |{' '}
-          <a href="tel:01617009234" className="underline hover:text-slate-800">
+          <a href="tel:01617009234" className="underline hover:text-slate-800" aria-label="Direct emergency call">
             Call 0161 700 9234
           </a>
         </div>
@@ -178,6 +178,7 @@ export default function App() {
             {/* Desktop CTA */}
             <div className="hidden md:block">
               <button
+                type="button"
                 onClick={() => document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2.5 rounded-lg font-bold text-sm transition shadow-lg shadow-amber-500/20"
               >
@@ -187,9 +188,11 @@ export default function App() {
 
             {/* Mobile Menu Button */}
             <button
+              type="button"
               className="md:hidden text-amber-400 p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -245,6 +248,7 @@ export default function App() {
                   Call Emergency Dispatch
                 </a>
                 <button
+                  type="button"
                   onClick={() => document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-slate-800/80 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-bold text-base transition border border-slate-700 hover:border-amber-400"
                 >
@@ -273,13 +277,16 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Image Container (Uses hero.webp with SEO Alt Text) */}
+            {/* Right Image Container */}
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-900 group">
                 <img
                   src={heroImg}
                   alt="Certified emergency electrician in Manchester inspecting electrical panel and circuit wiring"
                   loading="eager"
+                  decoding="async"
+                  width="600"
+                  height="450"
                   className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
@@ -340,6 +347,7 @@ export default function App() {
                       <p className="text-slate-400 text-sm mb-6 leading-relaxed">{service.description}</p>
                     </div>
                     <button
+                      type="button"
                       onClick={() => document.getElementById('quote')?.scrollIntoView({ behavior: 'smooth' })}
                       className="w-full bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-amber-400 py-2.5 rounded-xl font-bold text-sm transition"
                     >
@@ -362,6 +370,9 @@ export default function App() {
                   src={image2}
                   alt="NICEIC certified Manchester electrician conducting electrical safety diagnostics and consumer board inspection"
                   loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="450"
                   className="w-full h-80 sm:h-96 object-cover object-center group-hover:scale-105 transition duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -486,7 +497,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 8: INTERACTIVE EMERGENCY QUOTE FORM WITH IMAGE 3 INTEGRATION */}
+        {/* SECTION 8: INTERACTIVE EMERGENCY QUOTE FORM WITH MATCHING LABELS */}
         <section id="quote" className="bg-slate-900/80 px-4 py-16 md:py-24 border-t border-slate-800">
           <div className="max-w-7xl mx-auto">
             <div className="text-center max-w-2xl mx-auto mb-12">
@@ -504,6 +515,9 @@ export default function App() {
                     src={image3}
                     alt="Commercial and residential electrical contractor testing high-voltage circuitry in Manchester"
                     loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="400"
                     className="w-full h-64 sm:h-72 object-cover object-center group-hover:scale-105 transition duration-500"
                   />
                   <div className="p-6 bg-slate-900">
@@ -521,7 +535,7 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Right Column: The Quote Form */}
+              {/* Right Column: The Quote Form with Accessible Labels */}
               <div className="lg:col-span-7">
                 {formSubmitted ? (
                   <div className="bg-emerald-950/60 border border-emerald-500 rounded-2xl p-8 text-center animate-fadeIn">
@@ -534,8 +548,11 @@ export default function App() {
                 ) : (
                   <form onSubmit={handleFormSubmit} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-5">
                     <div>
-                      <label className="block text-slate-200 text-sm font-semibold mb-2">Full Name *</label>
+                      <label htmlFor="fullName" className="block text-slate-200 text-sm font-semibold mb-2">
+                        Full Name *
+                      </label>
                       <input
+                        id="fullName"
                         type="text"
                         name="fullName"
                         value={formData.fullName}
@@ -548,8 +565,11 @@ export default function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-slate-200 text-sm font-semibold mb-2">Manchester Postcode *</label>
+                        <label htmlFor="postcode" className="block text-slate-200 text-sm font-semibold mb-2">
+                          Manchester Postcode *
+                        </label>
                         <input
+                          id="postcode"
                           type="text"
                           name="postcode"
                           value={formData.postcode}
@@ -560,8 +580,11 @@ export default function App() {
                         />
                       </div>
                       <div>
-                        <label className="block text-slate-200 text-sm font-semibold mb-2">Mobile Number *</label>
+                        <label htmlFor="mobile" className="block text-slate-200 text-sm font-semibold mb-2">
+                          Mobile Number *
+                        </label>
                         <input
+                          id="mobile"
                           type="tel"
                           name="mobile"
                           value={formData.mobile}
@@ -574,8 +597,11 @@ export default function App() {
                     </div>
 
                     <div>
-                      <label className="block text-slate-200 text-sm font-semibold mb-2">Service Needed *</label>
+                      <label htmlFor="service-select" className="block text-slate-200 text-sm font-semibold mb-2">
+                        Service Needed *
+                      </label>
                       <select
+                        id="service-select"
                         name="service"
                         value={formData.service}
                         onChange={handleFormChange}
@@ -593,7 +619,7 @@ export default function App() {
                     </div>
 
                     <div>
-                      <label className="block text-slate-200 text-sm font-semibold mb-2">Is this an active emergency?</label>
+                      <span className="block text-slate-200 text-sm font-semibold mb-2">Is this an active emergency?</span>
                       <div className="grid grid-cols-2 gap-3">
                         <button
                           type="button"
@@ -617,8 +643,11 @@ export default function App() {
                     </div>
 
                     <div>
-                      <label className="block text-slate-200 text-sm font-semibold mb-2">Brief Details</label>
+                      <label htmlFor="details" className="block text-slate-200 text-sm font-semibold mb-2">
+                        Brief Details
+                      </label>
                       <textarea
+                        id="details"
                         name="details"
                         value={formData.details}
                         onChange={handleFormChange}
@@ -653,6 +682,7 @@ export default function App() {
               {faqItems.map((item, idx) => (
                 <div key={idx} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
                   <button
+                    type="button"
                     onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
                     className="w-full flex items-center justify-between p-5 text-left font-bold text-white hover:bg-slate-800/50 transition text-sm sm:text-base"
                     aria-expanded={expandedFaq === idx}
@@ -688,7 +718,7 @@ export default function App() {
         </section>
       </main>
 
-      {/* SECTION 10: FOOTER */}
+      {/* SECTION 10: FOOTER (ACCESSIBLE HEADING STRUCTURE) */}
       <footer className="bg-slate-900 border-t border-slate-800 px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
@@ -704,7 +734,7 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-3 text-sm">Contact & Hours</h4>
+              <p className="font-bold text-white mb-3 text-sm uppercase tracking-wider text-slate-300">Contact & Hours</p>
               <div className="space-y-2 text-slate-400 text-xs sm:text-sm">
                 <p className="flex items-start gap-2">
                   <MapPin className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
@@ -722,7 +752,7 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-3 text-sm">Accreditations</h4>
+              <p className="font-bold text-white mb-3 text-sm uppercase tracking-wider text-slate-300">Accreditations</p>
               <div className="space-y-2 text-slate-400 text-xs sm:text-sm">
                 <p className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-amber-400" /> NICEIC Approved Contractor
@@ -741,48 +771,6 @@ export default function App() {
             &copy; 2026 Apex Electrical Services Ltd. All rights reserved.
           </div>
         </div>
-
-        {/* SCHEMA.ORG JSON-LD STRUCTURED DATA (INDEXES ALL 3 WEBP IMAGES) */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Electrician',
-              name: 'Apex Electrical Services',
-              image: [
-                'https://apexelectricalmanchester.vercel.app/hero.webp',
-                'https://apexelectricalmanchester.vercel.app/image2.webp',
-                'https://apexelectricalmanchester.vercel.app/image3.webp',
-              ],
-              description:
-                "Manchester's certified 24/7 emergency electricians. NICEIC approved contractor serving Greater Manchester.",
-              url: 'https://apexelectricalmanchester.vercel.app',
-              telephone: '+441617009234',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Deansgate',
-                addressLocality: 'Manchester',
-                addressRegion: 'Greater Manchester',
-                postalCode: 'M3 2JA',
-                addressCountry: 'GB',
-              },
-              priceRange: '£85-£5000',
-              openingHoursSpecification: {
-                '@type': 'OpeningHoursSpecification',
-                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                opens: '00:00',
-                closes: '23:59',
-              },
-              aggregateRating: {
-                '@type': 'AggregateRating',
-                ratingValue: '5.0',
-                ratingCount: '142',
-              },
-              areaServed: ['Manchester', 'Stockport', 'Salford', 'Trafford', 'Oldham', 'Bolton', 'Altrincham', 'Didsbury', 'Sale'],
-            }),
-          }}
-        />
       </footer>
     </div>
   )
